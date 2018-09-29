@@ -74,11 +74,11 @@ def snake(block_size, snakeList, snakeTail):
     if direction == 'up':
         head = img
     elif direction == 'right':
-        head = pygame.transform.rotate(img, 270)
+        head = pg.transform.rotate(img, 270)
     elif direction == 'left':
-        head = pygame.transform.rotate(img, 90)
+        head = pg.transform.rotate(img, 90)
     elif direction == 'down':
-        head = pygame.transform.rotate(img, 180)
+        head = pg.transform.rotate(img, 180)
 
 
     gameDisplay.blit(head, (snakeList[-1][0], snakeList[-1][1]))
