@@ -1,10 +1,10 @@
 #import Our Packages
-import pygame
+import pygame as pg 
 import time
 import random
 
 #initialize all imported pygame modules
-pygame.init()
+pg.init()
 
 #Our Colors
 white = (255, 255, 255)
@@ -21,10 +21,10 @@ display_width = 1000
 display_height = 680
 
 #Initialize a window or screen for display
-gameDisplay = pygame.display.set_mode((display_width, display_height))
+gameDisplay = pg.display.set_mode((display_width, display_height))
 
 #Set the current window caption
-pygame.display.set_caption('Snake')
+pg.display.set_caption('Snake')
 
 
 gameExit = True
@@ -39,19 +39,19 @@ AppleThickness = 30
 FPS = 15
 Screen_FPS = 50
 
-clock = pygame.time.Clock()
+clock = pg.time.Clock()
 
-smallfont = pygame.font.SysFont('comicsansms', 25)
-uppersmallfont = pygame.font.SysFont('comicsansms', 35)
-medfont = pygame.font.SysFont('comicsansms', 50)
-largefont = pygame.font.SysFont('comicsansms', 75)
+smallfont = pg.font.SysFont('comicsansms', 25)
+uppersmallfont = pg.font.SysFont('comicsansms', 35)
+medfont = pg.font.SysFont('comicsansms', 50)
+largefont = pg.font.SysFont('comicsansms', 75)
 
 
-img = pygame.image.load('Snake Head.png')
-apple_img = pygame.image.load('Apple.png')
-tail_img = pygame.image.load('Snake Tail.png')
-icon = pygame.image.load('Snake Head.png')
-pygame.display.set_icon(icon)
+img = pg.image.load('Snake Head.png')
+apple_img = pg.image.load('Apple.png')
+tail_img = pg.image.load('Snake Tail.png')
+icon = pg.image.load('Snake Head.png')
+pg.display.set_icon(icon)
 
 direction = 'up'
 
@@ -60,13 +60,13 @@ def rotate_tail(x1, y1, x2, y2):
     x = x1 - x2
     y = y1 - y2
     if x > 0:
-        return pygame.transform.rotate(tail_img, 90)
+        return pg.transform.rotate(tail_img, 90)
     elif x < 0:
-        return pygame.transform.rotate(tail_img, 270)
+        return pg.transform.rotate(tail_img, 270)
     elif y > 0:
-        return pygame.transform.rotate(tail_img, 360)
+        return pg.transform.rotate(tail_img, 360)
     elif y < 0:
-        return pygame.transform.rotate(tail_img, 180)
+        return pg.transform.rotate(tail_img, 180)
 
 
 def snake(block_size, snakeList, snakeTail):
@@ -89,7 +89,7 @@ def snake(block_size, snakeList, snakeTail):
             gameDisplay.blit(tail, (snakeList[0][0], snakeList[0][1]))
             count += 1
         else:
-            pygame.draw.rect(gameDisplay,red2, [XnY[0], XnY[1], block_size, block_size])
+            pg.draw.rect(gameDisplay,red2, [XnY[0], XnY[1], block_size, block_size])
 
 def Apple_Gen(snakeList):
     Valid = False
@@ -120,17 +120,17 @@ def intro_screen():
         #msg_to_screen('if U hit edges or yourself, U die.', black, -0, 'upsmall')
         msg_to_screen('...Press C to play ,P to pause ,Q to Quit...', blue, 60, 'medium')
         msg_to_screen('...Press Escape at anytime to Leave...', blue, 100, 'medium')
-        pygame.display.update()
+        pg.display.update()
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                pg.quit()
                 quit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_c:
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_c:
                     intro = False
-                elif event.key == pygame.K_q or event.key == pygame.K_ESCAPE:
-                    pygame.quit()
+                elif event.key == pg.K_q or event.key == pg.K_ESCAPE:
+                    pg.quit()
                     quit()
 
         clock.tick(Screen_FPS)
@@ -148,18 +148,18 @@ def pause():
     msg_to_screen('Let\'s Continue,Just Press C', black, -20, 'medium')
     msg_to_screen('Press Q to Quit', red, 20, 'upsmall')
 
-    pygame.display.update()
+    pg.display.update()
 
     while paused:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                pg.quit()
                 quit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_c:
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_c:
                     paused = False
-                elif event.key == pygame.K_q or event.key == pygame.K_ESCAPE:
-                    pygame.quit()
+                elif event.key == pg.K_q or event.key == pg.K_ESCAPE:
+                    pg.quit()
                     quit()
 
         clock.tick(FPS)
@@ -214,26 +214,26 @@ def gameloop():
             msg_to_screen('Oh No Sorry...Game Over', black, -60, 'large')
             msg_to_screen('Don\'t Give Up ,Try again Just Press C',red, 60, 'medium')
             msg_to_screen('Press Q to quit',red, 100, 'medium')
-            pygame.display.update()
+            pg.display.update()
 
         while not gameover:
 
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
                     gameover = True
                     gameExit = False
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_c:
+                if event.type == pg.KEYDOWN:
+                    if event.key == pg.K_c:
                         gameloop()
-                    elif event.key == pygame.K_q or event.key == pygame.K_ESCAPE:
+                    elif event.key == pg.K_q or event.key == pg.K_ESCAPE:
                         gameover = True
                         gameExit = False
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
                 gameExit = False
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RIGHT:
+            if event.type == pg.KEYDOWN:
+                if event.key == pg.K_RIGHT:
                     if event_key_temp == 'left':
                         direction = 'left'
                         change_x = -block_size
@@ -241,7 +241,7 @@ def gameloop():
                         direction = 'right'
                         change_x = block_size
                     change_y = 0
-                elif event.key == pygame.K_LEFT:
+                elif event.key == pg.K_LEFT:
                     if event_key_temp == 'right':
                         direction = 'right'
                         change_x = block_size
@@ -249,7 +249,7 @@ def gameloop():
                         direction = 'left'
                         change_x = -block_size
                     change_y = 0
-                elif event.key == pygame.K_UP:
+                elif event.key == pg.K_UP:
                     if event_key_temp == 'down':
                         direction = 'down'
                         change_y = block_size
@@ -257,7 +257,7 @@ def gameloop():
                         direction = 'up'
                         change_y = -block_size
                     change_x = 0
-                elif event.key == pygame.K_DOWN:
+                elif event.key == pg.K_DOWN:
                     if event_key_temp == 'up':
                         direction = 'up'
                         change_y = -block_size
@@ -265,13 +265,13 @@ def gameloop():
                         direction = 'down'
                         change_y = block_size
                     change_x = 0
-                elif event.key == pygame.K_p:
+                elif event.key == pg.K_p:
                     pause()
 
                 event_key_temp = direction
 
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                pygame.quit()
+            if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
+                pg.quit()
                 quit()
 
         if lead_x >= display_width or lead_x <= -1 or lead_y >= display_height or lead_y <= -1:
@@ -302,11 +302,11 @@ def gameloop():
 
         score(snakeLen - 1)
 
-        pygame.display.update()
+        pg.display.update()
         clock.tick(FPS)
 
     # uninitialize all pygame modules
-    pygame.quit()
+    pg.quit()
     quit()
 
 
