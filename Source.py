@@ -14,7 +14,7 @@ blue = (0, 0, 255)
 red = (255, 0, 0)
 ceil = (19, 229, 240)
 yellow = (255, 255, 25)
-red2 = (200,2.6,14.27)
+red2 = (190,2.6,14.27)
 
 #Size of Display Window
 display_width = 1000
